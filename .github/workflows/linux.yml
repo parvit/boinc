@@ -1,11 +1,12 @@
 name: Linux
 on:
-  push:
-    branches: [ master, 'client_release/**' ]
-  pull_request:
-    branches: [ master ]
-  schedule:
-    - cron:  '10 12 * * 0'
+  workflow_dispatch:
+  # push:
+  #   branches: [ master, 'client_release/**' ]
+  # pull_request:
+  #   branches: [ master ]
+  # schedule:
+  #   - cron:  '10 12 * * 0'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
