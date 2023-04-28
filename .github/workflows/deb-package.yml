@@ -1,0 +1,36 @@
+name: Deb-Package
+on:
+  workflow_dispatch:
+    package_type:
+      description: 'package type to generate'
+      type: choice
+      options:
+        - libs
+        - client
+        - server
+        - manager
+      required: true
+    package_main_version:
+      description: 'main version to assign the package'
+      type: string
+      required: true
+    package_build_version:
+      description: 'sequential build number of the package'
+      type: string
+      required: true
+    deploy_artifact:
+      description: 'deployed artifact to use for generating the package'
+      type: string
+      required: true
+
+jobs:
+  build:
+    name: generate-deb
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+          
+      - name: Display structure of downloaded files
+        run: ls -R
